@@ -1,4 +1,4 @@
-package apiwhisperer
+package apisnitch
 
 type ApiCall struct {
 	ApiPath       string   `json:"path"`

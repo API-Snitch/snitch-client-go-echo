@@ -1,4 +1,4 @@
-package apiwhisperer
+package apisnitch
 
 import (
 	"log/slog"

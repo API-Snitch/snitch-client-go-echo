@@ -1,4 +1,4 @@
-package apiwhisperer
+package apisnitch
 
 type Request struct {
 	Host          string              `json:"host"`
