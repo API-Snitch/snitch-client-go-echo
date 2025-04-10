@@ -1,4 +1,4 @@
-module github.com/API-Snitch/snitch-client-go-echo/apisnitch
+module github.com/API-Snitch/snitch-client-go-echo
 
 go 1.23.4
 
