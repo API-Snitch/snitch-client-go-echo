@@ -1,2 +1,3 @@
 # snitch-client-go-echo
-Snitch client for Go and Echo
+
+API Snitch client for Go and Echo
