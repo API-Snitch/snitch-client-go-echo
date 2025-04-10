@@ -12,6 +12,7 @@ import (
 )
 
 type reporter struct {
+	serviceURL   string
 	apiSecret    string
 	apiCallCache ApiCallCache
 	wsClient     *websocket.Conn
@@ -24,8 +25,9 @@ type Reporter interface {
 	FinalizeApiCall(reqID string, response Response)
 }
 
-func NewReporter(apiSecret string, apiCallCache ApiCallCache) Reporter {
+func NewReporter(serviceURL string, apiSecret string, apiCallCache ApiCallCache) Reporter {
 	return &reporter{
+		serviceURL:   serviceURL,
 		apiSecret:    apiSecret,
 		apiCallCache: apiCallCache,
 		wsClient:     nil,
@@ -39,7 +41,7 @@ func (r *reporter) Start() error {
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, os.Interrupt)
 
-	u := url.URL{Scheme: "ws", Host: "localhost:7777", Path: "/ws"}
+	u := url.URL{Scheme: "wss", Host: r.serviceURL, Path: "/ws"}
 	slog.Info("Connecting", "url", u)
 
 	c, resp, err := websocket.DefaultDialer.Dial(u.String(), nil)

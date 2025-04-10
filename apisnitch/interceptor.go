@@ -16,9 +16,9 @@ const (
 )
 
 // ApiSnitchPlugin is a middleware function to intercept all HTTP requests
-func ApiSnitchPlugin(secret string) func(next echo.HandlerFunc) echo.HandlerFunc {
+func ApiSnitchPlugin(serviceURL string, secret string) func(next echo.HandlerFunc) echo.HandlerFunc {
 	// Init cache & reporter
-	reporter := NewReporter(secret, NewApiCallCache())
+	reporter := NewReporter(serviceURL, secret, NewApiCallCache())
 	go func() {
 		err := reporter.Start()
 		if err != nil {
